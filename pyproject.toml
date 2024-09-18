@@ -10,6 +10,7 @@ name = "plantcv-extras"
 dynamic = ["version"]
 dependencies = [
     "plantcv",
+    "flirextractor",
 ]
 requires-python = ">=3.6"
 authors = [

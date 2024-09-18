@@ -3,6 +3,7 @@
 name: plantcv
 dependencies:
   - python=3.11
+  - pip
   - pip:
     - flirextractor
   - matplotlib>=1.5
@@ -27,11 +28,10 @@ dependencies:
   - altair
   - vl-convert-python
   - rasterio
-  - napari
   - pytest-qt
   - pyqt
   - git
-  - exiftools
+  - exiftool
 
 channels:
   - conda-forge

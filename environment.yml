@@ -27,7 +27,6 @@ dependencies:
   - jupyterlab
   - altair
   - vl-convert-python
-  - rasterio
   - pytest-qt
   - pyqt
   - git

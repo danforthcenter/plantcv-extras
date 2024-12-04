@@ -11,6 +11,8 @@ class TestData:
         """Initialize simple variables."""
         # Test data directory
         self.datadir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "testdata")
+        # thermal image
+        self.thermal_img = os.path.join(self.datadir, "FLIR5612.jpg")
 
 
 @pytest.fixture(scope="session")

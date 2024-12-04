@@ -15,9 +15,8 @@ def flir_rename(filename, sep='_', test=True, new_dir=None):
     INPUTS:
     1) filename: path to a single image or a directory
     2) sep: character that is used for separating filename, date, and time (default='_')
-        if image names start with 'FLIR' AND 'IR_' then need to change to '-' so number of metadata types is the same for running in parallel
-    3) test: lets you test the renaming without changing the filenames (default=True)
-    4) new_dir: lets you specify a new directory to copy renamed images to, so original images stay unchanged (default=None)
+    3) test: wether or not to test file renaming, dry run (default=True)
+    4) new_dir: path to new directory to copy renamed images to; default will rename files in input directory (default=None)
 
     OUTPUTS:
     Changes FLIR image names (eg. FLIR5003.jpg > FLIR5003_2024-6-12T10-35.jpg)

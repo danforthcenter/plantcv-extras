@@ -4,7 +4,7 @@ from plantcv.extras.thermal import flir_rename
 from plantcv.plantcv import readimage
 
 
-# tests fatal error if no filename is given
+# tests fatal error if file doesn't exist or cannot be found
 def test_flir_rename_fatal_filename(test_data):
     """Test for PlantCV.Extras"""
     with pytest.raises(RuntimeError):

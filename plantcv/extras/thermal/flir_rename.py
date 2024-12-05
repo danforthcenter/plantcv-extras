@@ -26,7 +26,7 @@ def flir_rename(filename, sep='_', test=True, new_dir=None):
     :param new_dir: str
     """
     if os.path.exists(filename) is False:
-        fatal_error(filename + "could not be found")
+        fatal_error(filename + " could not be found")
 
     if sep not in ("_", "-"):
         fatal_error("Must specify either '_' or '-' for sep")       # separator characters are limited to these two options

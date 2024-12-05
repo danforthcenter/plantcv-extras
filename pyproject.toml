@@ -11,6 +11,7 @@ dynamic = ["version"]
 dependencies = [
     "plantcv",
     "flirextractor",
+    "imageio.v3",
 ]
 requires-python = ">=3.6"
 authors = [

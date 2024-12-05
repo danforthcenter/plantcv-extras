@@ -8,7 +8,6 @@ from plantcv.plantcv import fatal_error
 
 
 def flir_rename(filename, sep='_', test=True, new_dir=None):
-
     """
     Function that renames rgb and thermal images to include create date and time metadata
 
@@ -26,7 +25,6 @@ def flir_rename(filename, sep='_', test=True, new_dir=None):
     :param test: bool
     :param new_dir: str
     """
-
     if os.path.exists(filename) is False:
         fatal_error(filename + "could not be found")
 
@@ -51,4 +49,4 @@ def flir_rename(filename, sep='_', test=True, new_dir=None):
 
     testname = testname1+testname2
 
-    subprocess.run(['exiftool', *args, date_format, testname, filename])
+    subprocess.run(['exiftool', *args, date_format, testname, filename], check=True)

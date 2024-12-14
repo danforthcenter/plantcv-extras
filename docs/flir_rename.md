@@ -2,14 +2,13 @@
 
 This function changes the filenames of thermal images to include date and timestamp from metadata.
 
-**plantcv.extras.thermal.flir_rename**(*filename, sep='_', test=True, new_dir=None*)
+**plantcv.extras.thermal.flir_rename**(*filename, sep='_', new_dir*)
 
 
 - **Parameters:**
     - filename - Path to an image or directory.
     - sep - Character that separates metadata terms of the filename. Needs to be set to '\_' or '-' (default = '_'). 
-    - test - (default = True).
-    - new_dir - String of path to a new directory. Images in input directory stay unchanged while renamed images are copied to the new directory. Note: New directory needs to exist (default = None).
+    - new_dir - Path to a new directory. Images in input directory stay unchanged while renamed images are copied to the new directory. Note: New directory needs to exist.
 - **Context:**
     - Used to rename filenames of thermal images to include date and time data.
     - Note: If you plan on running the renamed images in parallel later on, it is important to have the same number of metadata components in the filenames (see [Parallelization documentation](https://plantcv.readthedocs.io/en/stable/pipeline_parallel/)). FLIR image names start with FLIR but switch to IR_ once 10000 images are reached. If your dataset contains a combination of both "FLIR_##" and "IR_##" then you need to use '-' as a separator otherwise images will have different numbers of metadata terms in the filename when running in parallel.

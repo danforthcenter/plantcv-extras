@@ -17,5 +17,5 @@ class TestData:
 
 @pytest.fixture(scope="session")
 def test_data():
-    """Test data object for the PlantCV-extras package.""" 
+    """Test data object for the PlantCV-extras package."""
     return TestData()

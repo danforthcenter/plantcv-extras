@@ -19,7 +19,7 @@ This function changes the filenames of thermal images to include date and timest
 from plantcv.extras import thermal as th
 
 # change filename of a single image or a directory
-th.flir_rename(filename="home/user/images/FLIR1234.jpg", sep='_')
+th.flir_rename(filename="home/user/images/raw/FLIR1234.jpg", sep='_', new_dir="home/user/images/renamed/")
 
 ```
 

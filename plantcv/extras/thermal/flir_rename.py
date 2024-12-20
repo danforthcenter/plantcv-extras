@@ -42,6 +42,6 @@ def flir_rename(filename, new_dir, sep='_'):
     if sep == "-":
         date_format = "%Y_%m_%dT%H_%M"
         changename = "-filename<%f-$datetimeoriginal.%e"
-    result = subprocess.run(['which', 'exiftool'], capture_output=True, text=True)
+    result = subprocess.run(['which', 'exiftool'], capture_output=True, text=True, check=True)
     exiftool_path = result.stdout[:-1]
-    subprocess.run([exiftool_path, *args, date_format, changename, filename])
+    subprocess.run([exiftool_path, *args, date_format, changename, filename], check=True)

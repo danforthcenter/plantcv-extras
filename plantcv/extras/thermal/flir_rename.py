@@ -44,9 +44,8 @@ def flir_rename(filename, new_dir, sep='_'):
         changename = "-filename<%f-$datetimeoriginal.%e"
     
     result = os.system('which exiftool')
-    exiftool_path = result.stdout
+    #exiftool_path = result.stdout
     #
-    print(exiftool_path)
     exiftool_path = str(subprocess.check_output(['which', 'exiftool']).decode("utf-8"))[:-1]
     print(exiftool_path)
    

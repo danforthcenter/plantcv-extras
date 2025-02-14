@@ -24,7 +24,7 @@ def flir_rename(filename, new_dir, sep='_'):
     :param new_dir: str
     """
     # finds path to exiftool
-    exiftool_path = str(os.environ.get('exiftoolpath'))
+    #exiftool_path = str(os.environ.get('exiftoolpath'))
 
     if os.path.exists(filename) is False:
         fatal_error(filename + "could not be found")
@@ -43,8 +43,8 @@ def flir_rename(filename, new_dir, sep='_'):
         date_format = "%Y_%m_%dT%H_%M"
         changename = "-filename<%f-$datetimeoriginal.%e"
     
-    result = os.system('which exiftool')
-    print(result)
+    #result = os.system('which exiftool')
+    #print(result)
     #exiftool_path = result.stdout
     #
     #exiftool_path = str(subprocess.check_output(['which', 'exiftool']).decode("utf-8"))[:-1]
@@ -54,4 +54,4 @@ def flir_rename(filename, new_dir, sep='_'):
     #exiftool_path = result.stdout[:-1]
     #print(exiftool_path)
 
-    subprocess.run([exiftool_path, *args, date_format, changename, filename], check=True)
+    subprocess.run(['exiftool', *args, date_format, changename, filename], check=True)

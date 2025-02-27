@@ -4,8 +4,6 @@ name: plantcv
 dependencies:
   - python=3.11
   - pip
-  - pip:
-    - flirextractor
   - matplotlib>=1.5
   - numpy>=1.11,<2
   - pandas

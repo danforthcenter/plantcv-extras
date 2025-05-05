@@ -28,6 +28,8 @@ dependencies:
   - pytest-qt
   - pyqt
   - git
+  - napari
+  - pyside2
   - exiftool
 
 channels:

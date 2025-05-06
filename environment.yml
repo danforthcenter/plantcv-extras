@@ -29,7 +29,8 @@ dependencies:
   - pyqt
   - git
   - exiftool
+  - pip:
+    - flirextractor
 
 channels:
   - conda-forge
-  - defaults

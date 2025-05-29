@@ -34,11 +34,13 @@ def flir_convert(pseudo_dir, csv_dir, thermal_index=None, contains_str=None):
 
     # creates a list of all thermal images in img_dir
     list_all = [f for f in os.listdir(pseudo_dir) if f.endswith('.jpg')]
-    # selects all images that end with an even number (only checks first integer)
+    # selects all images that end with an even number
+    # this only checks the first integer
     temp_list = list_all
     if thermal_index == 'even':
         temp_list = [f for f in list_all if int(re.findall(r'\d+', f)[0]) % 2 == 0]
-    # selects all images that end with an odd number (only checks first integer)
+    # selects all images that end with an odd number
+    # this only checks the first integer
     elif thermal_index == 'odd':
         temp_list = [f for f in list_all if int(re.findall(r'\d+', f)[0]) % 2 != 0]
 
@@ -47,15 +49,26 @@ def flir_convert(pseudo_dir, csv_dir, thermal_index=None, contains_str=None):
     if contains_str is not None:
         thermal_list = [f for f in temp_list if contains_str in f]
 
-# loops through all images in thermal_list and converts them to .csv files, saves outputs in csv_dir
-    for image in thermal_list:
-        new_name = image[:-4]      # removes extension .jpg
-        old_path = os.path.join(pseudo_dir, image)      # combines path to directory with filename
-        from flirextractor import FlirExtractor
-        with FlirExtractor() as extractor:      # recommended to use 'with:' context manager
-            thermal_data = extractor.get_thermal(old_path)      # extracts the temperature data from the .jpg
-        new_path = os.path.join(csv_dir, new_name) + ".csv"     # combines new directory, new name and new extension
-        # combines new directory, new name and new extension if filename already exists and adds "_new" to name
-        if os.path.exists(new_path):
-            new_path = os.path.join(csv_dir, new_name) + "_new" + ".csv"
-        np.savetxt(new_path, thermal_data, delimiter=",")       # saves temperature data in a csv file
+    failed_files = []
+    # loops through all images in thermal_list and converts them to .csv files,
+    # saves outputs in csv_dir
+    from flirextractor import FlirExtractor
+    # recommended to use 'with:' context manager
+    with FlirExtractor() as extractor:
+        for image in thermal_list:
+            try:
+                new_name = image[:-4]      # removes extension .jpg
+                old_path = os.path.join(pseudo_dir, image)      # combines path to directory with filename
+                thermal_data = extractor.get_thermal(old_path)      # extracts the temperature data from the .jpg
+                new_path = os.path.join(csv_dir, new_name) + ".csv"     # combines new directory, new name and new extension
+            # combines new directory, new name and new extension if filename already exists and adds "_new" to name
+                if os.path.exists(new_path):
+                    new_path = os.path.join(csv_dir, new_name) + "_new" + ".csv"
+                np.savetxt(new_path, thermal_data, delimiter=",")       # saves temperature data in a csv file
+            except Exception as e:
+                failed_files.append(f"{old_path}: {e}")
+    # prints filenames and error messages of files that failed to process
+    if failed_files:
+        print("\n some files failed to process:")
+        print("\n".join(failed_files))
+    return failed_files

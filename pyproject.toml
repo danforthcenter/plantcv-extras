@@ -11,7 +11,7 @@ dynamic = ["version"]
 dependencies = [
     "plantcv",
     "pillow",
-    "flirextractor"
+    "flirextractor @ file:///Users/afischer/Documents/GitHub/flirextractor_new"
 ]
 requires-python = ">=3.6"
 authors = [

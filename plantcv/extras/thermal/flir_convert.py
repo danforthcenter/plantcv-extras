@@ -9,8 +9,7 @@ from flirextractor import FlirExtractor
 
 
 def flir_convert(pseudo_dir, csv_dir, thermal_index=None, contains_str=None):
-    """
-    Function that converts pseudo colored thermal images into csv files
+    """ Function that converts pseudo colored thermal images into csv files
     INPUTS:
     1) pseudo_dir: path to a directory with thermal/pseudo colored (and rgb) images
     2) csv_dir: output directory where csv files are saved

@@ -19,10 +19,11 @@ def test_flir_convert_even(test_data, tmpdir):
     temp_file = cache_dir.join("FLIR5612.csv")
     # Create the file and write
     temp_file.write("test")
-    flir_convert(test_data.datadir, csv_dir=cache_dir, thermal_index='even',
+    flir_convert(test_data.datadir, csv_dir=cache_dir, thermal_index='even', 
                  contains_str='FLIR')
-    newname = os.listdir(cache_dir)[1]
-    assert newname == "FLIR5612_new.csv"
+    files = os.listdir(cache_dir)
+    print("Files in cache_dir:", files)
+    assert "FLIR5612_new.csv" in files, "Expected FLIR5612_new.csv not found"
 
 
 # tests the filtering by 'odd' which should return nothing

@@ -8,7 +8,9 @@ from plantcv.plantcv import fatal_error
 
 
 def flir_rename(filename, new_dir, sep='_'):
-    """Function that renames rgb and thermal images to include create date and time metadata
+    """
+    Function that renames rgb and thermal images to include create date and time metadata
+
     INPUTS:
     1) filename: path to a single image or a directory
     2) sep: character that is used for separating filename, date, and time (default='_')

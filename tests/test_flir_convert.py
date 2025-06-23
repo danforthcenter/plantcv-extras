@@ -1,0 +1,46 @@
+import os
+import pytest
+from plantcv.extras.thermal import flir_convert
+
+
+# tests fatal error if directory doesn't exist or cannot be found
+def test_flir_convert_fatal_filename(tmpdir):
+    """Test for PlantCV.Extras"""
+    cache_dir = tmpdir.mkdir("cache")
+    with pytest.raises(RuntimeError):
+        flir_convert(pseudo_dir="test.jpg", csv_dir=cache_dir)
+
+
+# tests the filtering by 'even' or a containing string and if the file already exists
+def test_flir_convert_even(test_data, tmpdir):
+    """Test for PlantCV.Extras"""
+    cache_dir = tmpdir.mkdir("cache")
+    # Define the path for the temporary file within that directory
+    temp_file = cache_dir.join("FLIR5612.csv")
+    # Create the file and write
+    temp_file.write("test")
+    flir_convert(test_data.datadir, csv_dir=cache_dir, thermal_index='even',
+                 contains_str='FLIR')
+    files = os.listdir(cache_dir)
+    print("Files in cache_dir:", files)
+    assert "FLIR5612_new.csv" in files, "Expected FLIR5612_new.csv not found"
+
+
+# tests the filtering by 'odd' which should return nothing
+def test_flir_convert_odd(test_data, tmpdir):
+    """Test for PlantCV.Extras"""
+    cache_dir = tmpdir.mkdir("cache")
+    flir_convert(test_data.datadir, csv_dir=cache_dir, thermal_index='odd')
+    assert len(os.listdir(cache_dir)) == 0
+
+
+# tests the case that a file is corrupted and returns the error message
+def test_flir_convert_fail(tmpdir):
+    """Test for PlantCV.Extras"""
+    cache_dir = tmpdir.mkdir("cache")
+    # Define the path for the temporary file within that directory
+    temp_file = cache_dir.join("FLIR561_corrupt.jpg")
+    # Create the file and write
+    temp_file.write("test")
+    failed_files = flir_convert(pseudo_dir=cache_dir, csv_dir=cache_dir)
+    assert len(failed_files) == 1

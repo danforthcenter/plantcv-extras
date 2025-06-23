@@ -10,7 +10,9 @@ name = "plantcv-extras"
 dynamic = ["version"]
 dependencies = [
     "plantcv",
-    "imageio>=2.33,!=2.35.0",
+    "pillow",
+    "flyr",
+    "flirextractor @ git+https://github.com/AFis-245/flirextractor.git@master"
 ]
 requires-python = ">=3.6"
 authors = [
